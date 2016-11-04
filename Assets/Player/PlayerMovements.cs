@@ -9,6 +9,7 @@ public class PlayerMovements : MonoBehaviour {
 
     void Start()
     {
+        Cursor.visible = false;
         //rbody = GetComponent<Rigidbody>(); /* for collisions, don't use*/
     }
     void Rotate()
