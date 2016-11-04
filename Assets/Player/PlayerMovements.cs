@@ -15,12 +15,12 @@ public class PlayerMovements : MonoBehaviour {
     {
         var rot = new Vector3(0f, 0f, 0f);
         // rotates Camera Left
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetAxis("Mouse X") < 0)
         {
             rot.y -= 1;
         }
-        // rotates Camera Left
-        if (Input.GetKey(KeyCode.E))
+         // rotates Camera Right
+        if (Input.GetAxis("Mouse X") > 0)
         {
             rot.y += 1;
         }
