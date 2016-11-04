@@ -5,7 +5,12 @@ public class PlayerMovements : MonoBehaviour {
 
     public float move_speed;
     public float rotate_speed;
+    //private Rigidbody rbody; /* for collisions, don't use*/
 
+    void Start()
+    {
+        //rbody = GetComponent<Rigidbody>(); /* for collisions, don't use*/
+    }
     void Rotate()
     {
         var rot = new Vector3(0f, 0f, 0f);
@@ -26,7 +31,10 @@ public class PlayerMovements : MonoBehaviour {
 
     void Update()
     {
+        float moveX = move_speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+        float moveZ = move_speed * Input.GetAxis("Vertical") * Time.deltaTime;
         Rotate();
-        transform.Translate(move_speed * Input.GetAxis("Horizontal") * Time.deltaTime, 0f, move_speed * Input.GetAxis("Vertical") * Time.deltaTime);
+        transform.Translate(moveX, 0f, moveZ);
+        //rbody.AddForce(moveX, 0f, moveZ); /* for collisions, don't use*/
     }
 }
