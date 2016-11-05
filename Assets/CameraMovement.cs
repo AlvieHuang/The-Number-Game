@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         player = this.transform.parent.gameObject;
+        transform.position = player.transform.position;
 	}
 	
 	// Update is called once per frame
