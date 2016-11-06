@@ -5,6 +5,7 @@ public class PlayerMovements : MonoBehaviour {
 
     public float move_speed;
     public float rotate_speed;
+    public bool toggle = true;
     //private Rigidbody rbody; /* for collisions, don't use*/
 
     void Start()
@@ -18,12 +19,18 @@ public class PlayerMovements : MonoBehaviour {
         float moveX = move_speed * Input.GetAxis("Horizontal") * Time.deltaTime;
         float moveZ = move_speed * Input.GetAxis("Vertical") * Time.deltaTime;
         transform.Translate(moveX, 0f, moveZ);
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            if (Cursor.lockState == CursorLockMode.Locked)
+            if (toggle)
+            {
                 Cursor.lockState = CursorLockMode.None;
-            if (Cursor.lockState == CursorLockMode.None)
+                Cursor.visible = true;
+            }
+            else {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+            toggle = !toggle;
         }
         //rbody.AddForce(moveX, 0f, moveZ); /* for collisions, don't use*/
     }
