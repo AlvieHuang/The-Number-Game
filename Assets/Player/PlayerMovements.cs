@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerMovements : MonoBehaviour {
 
-    public float move_speed;
-    public float rotate_speed;
+    public float move_speed = 8;
+    public float rotate_speed = 100;
     public bool toggle = true;
     //private Rigidbody rbody; /* for collisions, don't use*/
 
