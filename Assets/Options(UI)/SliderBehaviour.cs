@@ -28,6 +28,6 @@ public class SliderBehaviour : MonoBehaviour {
         //update data
         PlayerPrefs.SetInt(optionString, newValue);
         PlayerPrefs.Save();
-        Observers.Post(new Message(optionString));
+        //Observers.Post(new Message(optionString));
     }
 }
