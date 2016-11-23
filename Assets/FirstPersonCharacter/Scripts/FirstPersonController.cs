@@ -27,6 +27,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private GameObject invGUI;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -41,6 +42,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        //private int[] Inventory;
+        private GameObject[] Inventory;
 
         // Use this for initialization
         private void Start()
@@ -55,6 +58,25 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+
+            // At the start of the game generate random numbers
+            Inventory = new GameObject[10];
+            int i = 0;
+            foreach (Transform child in invGUI.transform)
+            {
+                if (child.CompareTag("CardGUI"))
+                {
+                    Inventory[i] = child.gameObject;
+                    ++i;
+                }
+            }
+            for (i = 0; i < 5; ++i)
+            {
+                int n = Random.Range(0, 9);
+                Inventory[i].GetComponent<UnityEngine.UI.Text>().text = n.ToString();
+            }
+            //UnityEngine.UI.Text test = invGUI.GetComponentInChildren<UnityEngine.UI.Text>();
+
         }
 
 
