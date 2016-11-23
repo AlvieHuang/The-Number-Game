@@ -22,10 +22,13 @@ public class CardSpawner : MonoBehaviour
     {
         for (int i = 0; i < spawnPoints.Length; ++i)
         {
+            if ((int)Random.Range(1, 3) == 1)
+            {
                 GameObject go = Instantiate(prefab);
                 go.transform.position = spawnPoints[i].transform.position;
                 spawnPoints[i] = null;
-        }
 
+            }
+        }
     }
 }
