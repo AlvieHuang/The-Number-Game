@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Card : MonoBehaviour {
-    private char CardValue;
+    [SerializeField]
+    private string CardValue;
     private int NumberValue;
     private string Symbols;
 
@@ -11,8 +12,8 @@ public class Card : MonoBehaviour {
         NumberValue = (int)Random.Range(0, 101);
         Symbols = "/*-+";
         if ((int)Random.Range(0, 2) == 1)
-            CardValue = Symbols[(int)Random.Range(0, 4)];
+            CardValue = Symbols[(int)Random.Range(0, 4)].ToString();
         else
-            CardValue = (char)NumberValue;
+            CardValue = NumberValue.ToString();
 	}
 }
