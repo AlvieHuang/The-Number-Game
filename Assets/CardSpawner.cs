@@ -3,12 +3,24 @@ using System.Collections;
 
 public class CardSpawner : MonoBehaviour
 {
+    public int SpawnCount;
+    public int SpawnSpots;
+    private int SpawnCounter;
     private GameObject[] spawnPoints;
     private bool Run
     {
         get
         {
             return true;
+        }
+    }
+
+    public static void RemoveAt(ref GameObject[] arr, int index)
+    {
+        for (int a = index; a < arr.Length - 1; a++)
+        {
+            // moving elements downwards, to fill the gap at [index]
+            arr[a] = arr[a + 1];
         }
     }
 
@@ -20,15 +32,16 @@ public class CardSpawner : MonoBehaviour
 
     void Spawn(GameObject[] spawnPoints, GameObject prefab)
     {
-        for (int i = 0; i < spawnPoints.Length; ++i)
+        SpawnCounter = 0;
+        while (SpawnCounter < SpawnCount)
         {
-            if ((int)Random.Range(1, 3) == 1)
-            {
-                GameObject go = Instantiate(prefab);
-                go.transform.position = spawnPoints[i].transform.position;
-                spawnPoints[i] = null;
-
-            }
+            int x = Random.Range(0, SpawnSpots);
+            GameObject go = Instantiate(prefab);
+            go.transform.position = spawnPoints[x].transform.position;
+            spawnPoints[x] = null;
+            RemoveAt(ref spawnPoints, x);
+            SpawnCounter++;
+            SpawnSpots--;
         }
     }
 }
