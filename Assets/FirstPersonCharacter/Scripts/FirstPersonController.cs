@@ -11,6 +11,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
         [SerializeField] private bool m_IsWalking;
+        [SerializeField] private bool m_IsCrawling;
         [SerializeField] private float WalkSpeed;
         [SerializeField] private float RunSpeed;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
@@ -234,11 +235,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
             bool waswalking = m_IsWalking;
+            bool wasCrawling = m_IsCrawling;
 
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            m_IsCrawling = Input.GetKey(KeyCode.LeftControl);
+            m_IsWalking = !Input.GetKey(KeyCode.LeftShift) || m_IsCrawling;
+
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? WalkSpeed : RunSpeed;
@@ -256,6 +260,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 StopAllCoroutines();
                 StartCoroutine(!m_IsWalking ? m_FovKick.FOVKickUp() : m_FovKick.FOVKickDown());
+            }
+
+            if (wasCrawling && !m_IsCrawling)
+            {
+                transform.localScale += new Vector3(0, .5f, 0);
+            }
+            else if (m_IsCrawling && !wasCrawling)
+            {
+                transform.localScale -= new Vector3(0, .5f, 0);
             }
         }
 
