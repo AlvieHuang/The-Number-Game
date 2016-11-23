@@ -27,10 +27,10 @@ public class DoorScript : MonoBehaviour
             {
                 if (open)
                 { //close door
-                    StartCoroutine(this.moveDoor(doorClose));
+                    StartCoroutine(this.moveDoor(doorOpen));
                 }
                 else { //open door
-                    StartCoroutine(this.moveDoor(doorOpen));
+                    StartCoroutine(this.moveDoor(doorClose));
                 }
             }
         }
