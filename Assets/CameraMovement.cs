@@ -15,8 +15,8 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (player.GetComponent<PlayerMovements>().toggle)
-        {
+        //if (player.GetComponent<PlayerMovements>().toggle)
+        //{
 
             var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
@@ -27,6 +27,6 @@ public class CameraMovement : MonoBehaviour {
 
             transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
             player.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, player.transform.up);
-        }
+        //}
 	}
 }
