@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Characters.FirstPerson{
 		// Update is called once per frame
 		void Update () {
 			if (Input.GetKeyDown(KeyCode.Mouse0)){
-				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				Ray ray = Camera.main.ScreenPointToRay (new Vector3(Screen.width/2,Screen.height/2,0));
 				//Creates the ray for the coursor
 				RaycastHit hitInfo;
 
