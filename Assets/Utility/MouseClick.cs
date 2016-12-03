@@ -28,6 +28,7 @@ namespace UnityStandardAssets.Characters.FirstPerson{
 					if (clickedCard != null) {
 						string temp = clickedCard.CardValue;
 						player.Inventory.Add (temp);
+                        Destroy(hitObject);
 						Debug.Log (temp);
 					}
 				 
