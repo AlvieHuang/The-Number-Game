@@ -9,7 +9,7 @@ public class Card : MonoBehaviour {
 
 	void Start ()
     {
-        NumberValue = (int)Random.Range(0, 101);
+        NumberValue = (int)Random.Range(0, 10);
         Symbols = "/*-+";
         if ((int)Random.Range(0, 2) == 1)
             CardValue = Symbols[(int)Random.Range(0, 4)].ToString();
