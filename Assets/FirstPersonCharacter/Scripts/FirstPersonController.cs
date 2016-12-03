@@ -44,8 +44,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         //private int[] Inventory;
-        private System.Collections.Generic.List<int> Inventory;
-        private System.Collections.Generic.List<GameObject> CardsGUI;
+		public System.Collections.Generic.List<string> Inventory;
+		public System.Collections.Generic.List<GameObject> CardsGUI;
 
         // Use this for initialization
         private void Start()
@@ -62,7 +62,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
 
             // At the start of the game generate random numbers
-            Inventory = new System.Collections.Generic.List<int>();
+			Inventory = new System.Collections.Generic.List<string>();
             CardsGUI = new System.Collections.Generic.List<GameObject>();
             int i = 0;
             foreach (Transform child in invGUI.transform)
@@ -70,7 +70,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if (child.CompareTag("CardGUI"))
                 {
                     int n = Random.Range(0, 9);
-                    Inventory.Add(n);
+					Inventory.Add(n.ToString());
                     CardsGUI.Add(child.gameObject);
                     CardsGUI[i].GetComponent<UnityEngine.UI.Text>().text = n.ToString();
                     ++i;

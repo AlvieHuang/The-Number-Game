@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Card : MonoBehaviour {
     [SerializeField]
-    private string CardValue;
+	public string CardValue;
     private int NumberValue;
     private string Symbols;
 
